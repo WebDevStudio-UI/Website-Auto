@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutoElite | Concessionaria Auto Milano</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0d0f;
+      --surface: #141416;
+      --surface2: #1c1c1f;
+      --surface3: #242428;
+      --border: rgba(255,255,255,0.08);
+      --border-hover: rgba(255,255,255,0.16);
+      --text: #f0efe8;
+      --muted: #8a8a8a;
+      --muted2: #5a5a5a;
+      --accent: #d4a843;
+      --accent2: #b8891e;
+      --green: #4caf7d;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 15px; line-height: 1.6; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,13,15,0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2.5rem; height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; letter-spacing: 0.04em; color: var(--text); text-decoration: none; }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.875rem; letter-spacing: 0.02em; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      background: var(--accent); color: #1a1000;
+      font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.8rem;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 0.5rem 1.25rem; border-radius: 6px; text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: #e8b94a; }
+
+    /* HERO */
+    .hero {
+      position: relative; overflow: hidden;
+      min-height: 88vh; display: flex; flex-direction: column; justify-content: center;
+      padding: 6rem 2.5rem 4rem;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 70% 50%, rgba(212,168,67,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 20% 80%, rgba(212,168,67,0.04) 0%, transparent 60%),
+        linear-gradient(180deg, #0d0d0f 0%, #111113 100%);
+    }
+    .hero-grid-lines {
+      position: absolute; inset: 0; z-index: 0; opacity: 0.03;
+      background-image:
+        linear-gradient(var(--accent) 1px, transparent 1px),
+        linear-gradient(90deg, var(--accent) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 700px; }
+    .hero-eyebrow {
+      font-family: 'Space Mono', monospace; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.25rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--accent); }
+    .hero-title {
+      font-family: 'Syne', sans-serif; font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 800; line-height: 1.05; color: var(--text);
+      margin-bottom: 1.25rem; letter-spacing: -0.02em;
+    }
+    .hero-title .gold { color: var(--accent); }
+    .hero-sub { font-size: 1.05rem; color: var(--muted); max-width: 480px; line-height: 1.7; margin-bottom: 2.5rem; }
+
+    /* SEARCH BAR */
+    .search-bar {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.25rem 1.5rem;
+      display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;
+      max-width: 680px;
+    }
+    .search-bar select {
+      background: var(--surface2); border: 1px solid var(--border);
+      color: var(--text); font-family: 'Inter', sans-serif; font-size: 0.875rem;
+      padding: 0.6rem 1rem; border-radius: 8px; flex: 1; min-width: 140px;
+      cursor: pointer; appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a8a8a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 0.75rem center;
+      padding-right: 2.25rem;
+    }
+    .search-bar select:focus { outline: none; border-color: var(--accent); }
+    .search-btn {
+      background: var(--accent); color: #1a1000;
+      font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.85rem;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      border: none; padding: 0.65rem 1.75rem; border-radius: 8px; cursor: pointer;
+      transition: background 0.2s, transform 0.15s; white-space: nowrap;
+    }
+    .search-btn:hover { background: #e8b94a; transform: translateY(-1px); }
+
+    /* STATS */
+    .stats-row {
+      display: flex; gap: 2.5rem; margin-top: 2.5rem; padding-top: 2rem;
+      border-top: 1px solid var(--border); flex-wrap: wrap;
+    }
+    .stat-item { display: flex; flex-direction: column; gap: 0.2rem; }
+    .stat-num { font-family: 'Space Mono', monospace; font-size: 1.6rem; font-weight: 700; color: var(--accent); }
+    .stat-label { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+
+    /* SECTION COMMON */
+    section { padding: 5rem 2.5rem; }
+    .section-inner { max-width: 1180px; margin: 0 auto; }
+    .section-label {
+      font-family: 'Space Mono', monospace; font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 800; color: var(--text); letter-spacing: -0.01em;
+      margin-bottom: 0.5rem;
+    }
+    .section-sub { color: var(--muted); font-size: 0.95rem; max-width: 480px; margin-bottom: 3rem; }
+
+    /* INVENTORY */
+    #inventario { background: var(--surface); }
+    .filter-row {
+      display: flex; gap: 0.5rem; margin-bottom: 2.5rem; flex-wrap: wrap;
+    }
+    .filter-btn {
+      background: var(--surface2); border: 1px solid var(--border);
+      color: var(--muted); font-family: 'Inter', sans-serif; font-size: 0.8rem;
+      padding: 0.4rem 1rem; border-radius: 20px; cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--accent-light, rgba(212,168,67,0.12));
+      border-color: var(--accent); color: var(--accent);
+    }
+    .cars-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;
+    }
+    .car-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s;
+      display: flex; flex-direction: column;
+    }
+    .car-card:hover { border-color: var(--border-hover); transform: translateY(-3px); }
+    .car-card-img {
+      width: 100%; height: 200px; object-fit: cover; display: block;
+      background: var(--surface2);
+    }
+    .car-card-body { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; }
+    .car-card-brand {
+      font-family: 'Space Mono', monospace; font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+    .car-card-name {
+      font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 700;
+      color: var(--text); margin-bottom: 0.75rem; line-height: 1.25;
+    }
+    .car-card-specs {
+      display: flex; gap: 0.75rem; margin-bottom: 1rem; flex-wrap: wrap;
+    }
+    .car-spec-tag {
+      font-size: 0.75rem; color: var(--muted);
+      background: var(--surface2); border: 1px solid var(--border);
+      padding: 0.2rem 0.6rem; border-radius: 4px;
+    }
+    .car-card-footer {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border);
+    }
+    .car-card-price {
+      font-family: 'Space Mono', monospace; font-size: 1.1rem; font-weight: 700;
+      color: var(--accent);
+    }
+    .car-card-link {
+      font-family: 'Syne', sans-serif; font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--text); text-decoration: none;
+      background: var(--surface2); border: 1px solid var(--border);
+      padding: 0.4rem 0.9rem; border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .car-card-link:hover { background: var(--accent); color: #1a1000; border-color: var(--accent); }
+
+    /* SERVIZI STRIP */
+    #servizi { border-top: 1px solid var(--border); }
+    .servizi-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem;
+    }
+    .servizio-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.5rem;
+      transition: border-color 0.25s;
+    }
+    .servizio-card:hover { border-color: var(--border-hover); }
+    .servizio-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: rgba(212,168,67,0.12); border: 1px solid rgba(212,168,67,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; margin-bottom: 1rem;
+    }
+    .servizio-title {
+      font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700;
+      color: var(--text); margin-bottom: 0.4rem;
+    }
+    .servizio-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+    /* BRAND STRIP */
+    .brand-strip {
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      padding: 2rem 2.5rem; background: var(--surface);
+    }
+    .brand-strip-inner {
+      max-width: 1180px; margin: 0 auto;
+      display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
+    }
+    .brand-strip-label {
+      font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--muted2); white-space: nowrap;
+    }
+    .brand-list {
+      display: flex; gap: 2rem; flex-wrap: wrap; align-items: center;
+    }
+    .brand-name {
+      font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--muted); transition: color 0.2s;
+    }
+    .brand-name:hover { color: var(--accent); }
+
+    /* TESTIMONIALS */
+    #testimonianze { background: var(--surface); border-top: 1px solid var(--border); }
+    .testi-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;
+    }
+    .testi-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.5rem;
+    }
+    .testi-stars { color: var(--accent); font-size: 0.9rem; margin-bottom: 0.75rem; letter-spacing: 0.1em; }
+    .testi-text { font-size: 0.9rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.25rem; font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: 0.75rem; }
+    .testi-avatar {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: rgba(212,168,67,0.15); border: 1px solid rgba(212,168,67,0.25);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif; font-size: 0.8rem; font-weight: 700; color: var(--accent);
+    }
+    .testi-name { font-family: 'Syne', sans-serif; font-size: 0.875rem; font-weight: 700; color: var(--text); }
+    .testi-car { font-size: 0.75rem; color: var(--muted2); }
+
+    /* CTA BANNER */
+    .cta-banner {
+      padding: 5rem 2.5rem;
+      background: linear-gradient(135deg, rgba(212,168,67,0.08) 0%, transparent 60%);
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .cta-banner-title {
+      font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 800; color: var(--text); margin-bottom: 0.75rem;
+    }
+    .cta-banner-sub { font-size: 1rem; color: var(--muted); margin-bottom: 2rem; }
+    .cta-banner-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-gold {
+      background: var(--accent); color: #1a1000;
+      font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem;
+      letter-spacing: 0.04em; text-decoration: none;
+      padding: 0.85rem 2rem; border-radius: 8px; transition: all 0.2s;
+    }
+    .btn-gold:hover { background: #e8b94a; transform: translateY(-2px); }
+    .btn-ghost {
+      background: transparent; color: var(--text);
+      font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.9rem;
+      letter-spacing: 0.04em; text-decoration: none;
+      padding: 0.85rem 2rem; border-radius: 8px;
+      border: 1px solid var(--border-hover); transition: all 0.2s;
+    }
+    .btn-ghost:hover { background: var(--surface); }
+
+    /* FOOTER */
+    footer {
+      background: var(--surface); border-top: 1px solid var(--border);
+      padding: 3rem 2.5rem 2rem;
+    }
+    .footer-inner {
+      max-width: 1180px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem;
+      margin-bottom: 2.5rem;
+    }
+    .footer-brand { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem; margin-bottom: 0.75rem; }
+    .footer-brand span { color: var(--accent); }
+    .footer-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.7; max-width: 300px; }
+    .footer-col-title {
+      font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.8rem;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer-links a { font-size: 0.85rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-contact-item { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.5rem; }
+    .footer-contact-item strong { color: var(--text); }
+    .footer-bottom {
+      max-width: 1180px; margin: 0 auto;
+      border-top: 1px solid var(--border); padding-top: 1.5rem;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+      font-size: 0.78rem; color: var(--muted2);
+    }
+
+    @media (max-width: 900px) {
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links { gap: 1.25rem; }
+      section { padding: 3.5rem 1.25rem; }
+      .hero { padding: 4rem 1.25rem 3rem; }
+      .stats-row { gap: 1.5rem; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .brand-strip { padding: 1.5rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">Auto<span>Elite</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#inventario">Inventario</a></li>
+      <li><a href="azienda.html">Chi Siamo</a></li>
+      <li><a href="contatti.html">Contattaci</a></li>
+    </ul>
+    <a class="nav-cta" href="contatti.html">Prenota</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid-lines"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Milano · Dal 1998</p>
+      <h1 class="hero-title">
+        Trova l'Auto<br>dei tuoi <span class="gold">Sogni</span>
+      </h1>
+      <p class="hero-sub">Oltre 500 veicoli premium nuovi e usati, tutti certificati con 150 controlli meccanici e storico di manutenzione verificato.</p>
+
+      <div class="search-bar">
+        <select>
+          <option value="">Tutte le Marche</option>
+          <option>Alfa Romeo</option>
+          <option>Audi</option>
+          <option>BMW</option>
+          <option>Mercedes-Benz</option>
+          <option>Porsche</option>
+          <option>Tesla</option>
+          <option>Volkswagen</option>
+        </select>
+        <select>
+          <option value="">Qualsiasi Prezzo</option>
+          <option>Fino a € 20.000</option>
+          <option>Fino a € 40.000</option>
+          <option>Fino a € 70.000</option>
+          <option>Oltre € 70.000</option>
+        </select>
+        <select>
+          <option value="">Tipo di Veicolo</option>
+          <option>Berlina</option>
+          <option>SUV</option>
+          <option>Coupé</option>
+          <option>Elettrica</option>
+        </select>
+        <button class="search-btn" onclick="document.getElementById('inventario').scrollIntoView({behavior:'smooth'})">Cerca →</button>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-item"><span class="stat-num">500+</span><span class="stat-label">Veicoli disponibili</span></div>
+        <div class="stat-item"><span class="stat-num">25+</span><span class="stat-label">Anni di esperienza</span></div>
+        <div class="stat-item"><span class="stat-num">10k+</span><span class="stat-label">Clienti soddisfatti</span></div>
+        <div class="stat-item"><span class="stat-num">150</span><span class="stat-label">Controlli certificati</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRAND STRIP -->
+  <div class="brand-strip">
+    <div class="brand-strip-inner">
+      <span class="brand-strip-label">Marchi in stock</span>
+      <div class="brand-list">
+        <span class="brand-name">Alfa Romeo</span>
+        <span class="brand-name">Audi</span>
+        <span class="brand-name">BMW</span>
+        <span class="brand-name">Mercedes</span>
+        <span class="brand-name">Porsche</span>
+        <span class="brand-name">Tesla</span>
+        <span class="brand-name">Volkswagen</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- INVENTARIO -->
+  <section id="inventario">
+    <div class="section-inner">
+      <p class="section-label">Inventario</p>
+      <h2 class="section-title">Veicoli in Evidenza</h2>
+      <p class="section-sub">Selezione curata di vetture certificate, con storico verificato e pronte alla consegna.</p>
+
+      <div class="filter-row">
+        <button class="filter-btn active" onclick="filterCars('tutti', this)">Tutti</button>
+        <button class="filter-btn" onclick="filterCars('benzina', this)">Benzina</button>
+        <button class="filter-btn" onclick="filterCars('diesel', this)">Diesel</button>
+        <button class="filter-btn" onclick="filterCars('elettrica', this)">Elettrica</button>
+        <button class="filter-btn" onclick="filterCars('suv', this)">SUV</button>
+        <button class="filter-btn" onclick="filterCars('coupe', this)">Coupé</button>
+      </div>
+
+      <div class="cars-grid" id="carsGrid">
+
+        <div class="car-card" data-fuel="benzina" data-type="coupe">
+          <img class="car-card-img" src="bmw.jpg" alt="BMW M3 GTS E92" />
+          <div class="car-card-body">
+            <p class="car-card-brand">BMW</p>
+            <h3 class="car-card-name">M3 GTS E92</h3>
+            <div class="car-card-specs">
+              <span class="car-spec-tag">2011</span>
+              <span class="car-spec-tag">45.000 km</span>
+              <span class="car-spec-tag">Benzina</span>
+              <span class="car-spec-tag">450 CV</span>
+            </div>
+            <div class="car-card-footer">
+              <span class="car-card-price">€ 200.000</span>
+              <a href="dettaglio-bmw.html" class="car-card-link">Dettagli →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="car-card" data-fuel="benzina" data-type="berlina">
+          <img class="car-card-img" src="audi.jpg" alt="Audi A3 Sportback" />
+          <div class="car-card-body">
+            <p class="car-card-brand">Audi</p>
+            <h3 class="car-card-name">A3 Sportback</h3>
+            <div class="car-card-specs">
+              <span class="car-spec-tag">2016</span>
+              <span class="car-spec-tag">20.000 km</span>
+              <span class="car-spec-tag">Benzina</span>
+            </div>
+            <div class="car-card-footer">
+              <span class="car-card-price">€ 23.900</span>
+              <a href="dettaglio-audi.html" class="car-card-link">Dettagli →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="car-card" data-fuel="benzina" data-type="berlina">
+          <img class="car-card-img" src="mercedes.jpg" alt="Mercedes-Benz Classe A" />
+          <div class="car-card-body">
+            <p class="car-card-brand">Mercedes-Benz</p>
+            <h3 class="car-card-name">Classe A</h3>
+            <div class="car-card-specs">
+              <span class="car-spec-tag">2018</span>
+              <span class="car-spec-tag">35.000 km</span>
+              <span class="car-spec-tag">Benzina</span>
+            </div>
+            <div class="car-card-footer">
+              <span class="car-card-price">€ 30.000</span>
+              <a href="dettaglio-mercedes.html" class="car-card-link">Dettagli →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="car-card" data-fuel="benzina" data-type="suv">
+          <img class="car-card-img" src="porsche.jpg" alt="Porsche Macan" />
+          <div class="car-card-body">
+            <p class="car-card-brand">Porsche</p>
+            <h3 class="car-card-name">Macan</h3>
+            <div class="car-card-specs">
+              <span class="car-spec-tag">2023</span>
+              <span class="car-spec-tag">15.000 km</span>
+              <span class="car-spec-tag">Benzina</span>
+            </div>
+            <div class="car-card-footer">
+              <span class="car-card-price">€ 65.000</span>
+              <a href="dettaglio-porsche.html" class="car-card-link">Dettagli →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="car-card" data-fuel="elettrica" data-type="berlina">
+          <img class="car-card-img" src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?q=80&w=800&auto=format&fit=crop" alt="Tesla Model 3" />
+          <div class="car-card-body">
+            <p class="car-card-brand">Tesla</p>
+            <h3 class="car-card-name">Model 3 Long Range</h3>
+            <div class="car-card-specs">
+              <span class="car-spec-tag">2023</span>
+              <span class="car-spec-tag">12.000 km</span>
+              <span class="car-spec-tag">Elettrica</span>
+            </div>
+            <div class="car-card-footer">
+              <span class="car-card-price">€ 42.000</span>
+              <a href="dettaglio-tesla.html" class="car-card-link">Dettagli →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="car-card" data-fuel="benzina" data-type="berlina">
+          <img class="car-card-img" src="alfaromeo.jpg" alt="Alfa Romeo Giulia Veloce" />
+          <div class="car-card-body">
+            <p class="car-card-brand">Alfa Romeo</p>
+            <h3 class="car-card-name">Giulia Veloce</h3>
+            <div class="car-card-specs">
+              <span class="car-spec-tag">2018</span>
+              <span class="car-spec-tag">28.000 km</span>
+              <span class="car-spec-tag">Benzina</span>
+            </div>
+            <div class="car-card-footer">
+              <span class="car-card-price">€ 48.500</span>
+              <a href="dettaglio-alfa.html" class="car-card-link">Dettagli →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="car-card" data-fuel="diesel" data-type="berlina">
+          <img class="car-card-img" src="golf.jpg" alt="Volkswagen Golf 7" />
+          <div class="car-card-body">
+            <p class="car-card-brand">Volkswagen</p>
+            <h3 class="car-card-name">Golf 7</h3>
+            <div class="car-card-specs">
+              <span class="car-spec-tag">2015</span>
+              <span class="car-spec-tag">40.000 km</span>
+              <span class="car-spec-tag">Diesel</span>
+            </div>
+            <div class="car-card-footer">
+              <span class="car-card-price">€ 25.900</span>
+              <a href="dettaglio-vw.html" class="car-card-link">Dettagli →</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVIZI -->
+  <section id="servizi">
+    <div class="section-inner">
+      <p class="section-label">Perché sceglierci</p>
+      <h2 class="section-title">I Nostri Servizi</h2>
+      <p class="section-sub">Tutto quello di cui hai bisogno, in un unico posto.</p>
+      <div class="servizi-grid">
+        <div class="servizio-card">
+          <div class="servizio-icon">💳</div>
+          <p class="servizio-title">Finanziamenti</p>
+          <p class="servizio-desc">Tassi agevolati e mini-rate personalizzate. Approvazione rapida con risposta entro 24 ore.</p>
+        </div>
+        <div class="servizio-card">
+          <div class="servizio-icon">🔧</div>
+          <p class="servizio-title">Officina Ufficiale</p>
+          <p class="servizio-desc">Tagliandi, revisioni e assistenza meccanica qualificata con ricambi originali certificati.</p>
+        </div>
+        <div class="servizio-card">
+          <div class="servizio-icon">🔁</div>
+          <p class="servizio-title">Valutazione Usato</p>
+          <p class="servizio-desc">Permutiamo la tua auto al miglior prezzo di mercato, con perizia gratuita in sede.</p>
+        </div>
+        <div class="servizio-card">
+          <div class="servizio-icon">🛡️</div>
+          <p class="servizio-title">Garanzia Estesa</p>
+          <p class="servizio-desc">Fino a 36 mesi di copertura totale su motore, cambio e tutti i principali componenti.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIANZE -->
+  <section id="testimonianze">
+    <div class="section-inner">
+      <p class="section-label">Clienti</p>
+      <h2 class="section-title">Cosa Dicono di Noi</h2>
+      <p class="section-sub">Oltre 10.000 clienti soddisfatti in 25 anni di attività.</p>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Esperienza eccellente dall'inizio alla fine. Personale preparato, nessuna pressione. Ho trovato la mia Golf 7 in condizioni perfette a un prezzo onesto."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">MR</div>
+            <div><p class="testi-name">Marco Rossi</p><p class="testi-car">Volkswagen Golf 7</p></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Ho permutato la mia vecchia berlina e acquistato una Giulia Veloce. Valutazione giusta, pratica snella e consegna in 48 ore. Tornerò sicuramente."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">SF</div>
+            <div><p class="testi-name">Sara Ferrari</p><p class="testi-car">Alfa Romeo Giulia</p></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Il finanziamento è stato approvato in giornata e il test drive organizzato il mattino stesso. Professionalità che non si trova facilmente."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">LB</div>
+            <div><p class="testi-name">Luca Bianchi</p><p class="testi-car">Tesla Model 3</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <div class="cta-banner">
+    <h2 class="cta-banner-title">Pronto a trovare la tua prossima auto?</h2>
+    <p class="cta-banner-sub">Prenota un appuntamento o scrivici: rispondiamo entro un'ora.</p>
+    <div class="cta-banner-btns">
+      <a href="contatti.html" class="btn-gold">Prenota un Appuntamento</a>
+      <a href="#inventario" class="btn-ghost">Sfoglia l'Inventario</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <p class="footer-brand">Auto<span>Elite</span></p>
+        <p class="footer-desc">La concessionaria di riferimento per veicoli premium a Milano dal 1998. Trasparenza, qualità e cura del cliente in ogni trattativa.</p>
+      </div>
+      <div>
+        <p class="footer-col-title">Navigazione</p>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#inventario">Inventario</a></li>
+          <li><a href="azienda.html">Chi Siamo</a></li>
+          <li><a href="azienda.html#servizi">Servizi</a></li>
+          <li><a href="contatti.html">Contattaci</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">Contatti</p>
+        <p class="footer-contact-item"><strong>Indirizzo</strong><br>Via delle Automobili 123<br>20100 Milano (MI)</p>
+        <p class="footer-contact-item"><strong>Telefono</strong><br><a href="tel:+390212345678" style="color:var(--muted);text-decoration:none;">+39 02 1234567</a></p>
+        <p class="footer-contact-item"><strong>Email</strong><br><a href="mailto:info@autoelite.it" style="color:var(--muted);text-decoration:none;">info@autoelite.it</a></p>
+        <p class="footer-contact-item" style="margin-top:0.75rem;font-size:0.78rem;">Lun–Ven: 09:00–19:00<br>Sab: 09:00–18:00 · Dom: Chiuso</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 AutoElite Milano · Tutti i diritti riservati</span>
+      <span>P.IVA 01234567890</span>
+    </div>
+  </footer>
+
+  <script>
+    function filterCars(type, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.car-card').forEach(card => {
+        const fuel = card.dataset.fuel;
+        const bodyType = card.dataset.type;
+        const show = type === 'tutti' || fuel === type || bodyType === type;
+        card.style.display = show ? 'flex' : 'none';
+      });
+    }
+  </script>
+
+</body>
+</html>

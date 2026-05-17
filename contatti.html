@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contattaci | AutoElite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0d0d0f; --surface: #141416; --surface2: #1c1c1f;
+      --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.16);
+      --text: #f0efe8; --muted: #8a8a8a; --muted2: #5a5a5a;
+      --accent: #d4a843; --green: #4caf7d; --red: #e05a4a;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 15px; line-height: 1.6; }
+
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(13,13,15,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; letter-spacing: 0.04em; color: var(--text); text-decoration: none; }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.875rem; letter-spacing: 0.02em; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-cta { background: var(--accent); color: #1a1000; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.5rem 1.25rem; border-radius: 6px; text-decoration: none; }
+
+    /* PAGE HERO */
+    .page-hero { position: relative; overflow: hidden; padding: 6rem 2.5rem 4.5rem; border-bottom: 1px solid var(--border); }
+    .page-hero-bg { position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse 50% 80% at 20% 50%, rgba(212,168,67,0.06) 0%, transparent 70%); }
+    .page-hero-content { position: relative; z-index: 1; max-width: 1180px; margin: 0 auto; }
+    .page-eyebrow { font-family: 'Space Mono', monospace; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+    .page-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--accent); }
+    .page-title { font-family: 'Syne', sans-serif; font-size: clamp(2.5rem, 4vw, 3.8rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 1.25rem; }
+    .page-sub { font-size: 1.05rem; color: var(--muted); max-width: 540px; line-height: 1.75; }
+
+    /* MAIN */
+    .contact-section { padding: 5rem 2.5rem; max-width: 1180px; margin: 0 auto; }
+    .contact-layout { display: grid; grid-template-columns: 1fr 420px; gap: 4rem; align-items: start; }
+
+    /* FORM */
+    .form-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 2.5rem; }
+    .form-title { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 800; color: var(--text); margin-bottom: 0.35rem; }
+    .form-sub { font-size: 0.875rem; color: var(--muted); margin-bottom: 2rem; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-field { margin-bottom: 1rem; }
+    .form-field label { display: block; font-size: 0.75rem; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%; background: var(--surface2); border: 1px solid var(--border);
+      color: var(--text); font-family: 'Inter', sans-serif; font-size: 0.9rem;
+      padding: 0.7rem 1rem; border-radius: 8px;
+      transition: border-color 0.2s; outline: none; resize: vertical;
+    }
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus { border-color: var(--accent); }
+    .form-field input::placeholder,
+    .form-field textarea::placeholder { color: var(--muted2); }
+    .form-field select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a8a8a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.75rem center; padding-right: 2.25rem; cursor: pointer; }
+    .form-field select option { background: var(--surface2); }
+
+    .tipo-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; margin-bottom: 1rem; }
+    .tipo-btn { background: var(--surface2); border: 1px solid var(--border); color: var(--muted); font-family: 'Inter', sans-serif; font-size: 0.8rem; padding: 0.5rem; border-radius: 8px; cursor: pointer; transition: all 0.2s; text-align: center; }
+    .tipo-btn.sel, .tipo-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(212,168,67,0.08); }
+    .tipo-label { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.5rem; }
+
+    .submit-btn { width: 100%; background: var(--accent); color: #1a1000; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.04em; border: none; padding: 0.9rem 1rem; border-radius: 8px; cursor: pointer; transition: all 0.2s; margin-top: 0.5rem; }
+    .submit-btn:hover { background: #e8b94a; transform: translateY(-1px); }
+    .form-note { font-size: 0.75rem; color: var(--muted2); text-align: center; margin-top: 0.75rem; }
+
+    .success-msg { display: none; background: rgba(76,175,125,0.1); border: 1px solid rgba(76,175,125,0.3); border-radius: 8px; padding: 1rem 1.25rem; font-size: 0.875rem; color: var(--green); margin-top: 1rem; text-align: center; }
+
+    /* SIDEBAR INFO */
+    .info-stack { display: flex; flex-direction: column; gap: 1.25rem; }
+
+    .info-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
+    .info-card-title { font-family: 'Syne', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+
+    .contact-item { display: flex; gap: 0.875rem; align-items: flex-start; margin-bottom: 1rem; }
+    .contact-item:last-child { margin-bottom: 0; }
+    .contact-icon { width: 36px; height: 36px; border-radius: 8px; background: rgba(212,168,67,0.1); border: 1px solid rgba(212,168,67,0.2); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+    .contact-text-label { font-size: 0.72rem; color: var(--muted2); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.1rem; }
+    .contact-text-val { font-size: 0.9rem; color: var(--text); }
+    .contact-text-val a { color: var(--text); text-decoration: none; }
+    .contact-text-val a:hover { color: var(--accent); }
+
+    .orari-grid { display: grid; gap: 0.4rem; }
+    .orario-row { display: flex; justify-content: space-between; font-size: 0.85rem; padding: 0.3rem 0; border-bottom: 1px solid var(--border); }
+    .orario-row:last-child { border-bottom: none; }
+    .orario-day { color: var(--muted); }
+    .orario-time { font-family: 'Space Mono', monospace; font-size: 0.78rem; color: var(--text); }
+    .orario-closed { color: var(--red); font-family: 'Space Mono', monospace; font-size: 0.78rem; }
+
+    .map-embed { width: 100%; height: 220px; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); background: var(--surface2); display: flex; align-items: center; justify-content: center; }
+    .map-placeholder { text-align: center; }
+    .map-placeholder p { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.75rem; }
+    .map-placeholder a { font-family: 'Syne', sans-serif; font-size: 0.8rem; font-weight: 700; color: var(--accent); text-decoration: none; border: 1px solid rgba(212,168,67,0.3); padding: 0.45rem 1rem; border-radius: 6px; transition: all 0.2s; }
+    .map-placeholder a:hover { background: rgba(212,168,67,0.1); }
+
+    .trust-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+    .trust-item-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem 1rem; display: flex; align-items: center; gap: 0.5rem; }
+    .trust-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+    .trust-text { font-size: 0.78rem; color: var(--muted); }
+
+    /* FOOTER */
+    footer { background: var(--surface); border-top: 1px solid var(--border); padding: 3rem 2.5rem 2rem; margin-top: 2rem; }
+    .footer-inner { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 2.5rem; }
+    .footer-brand { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem; margin-bottom: 0.75rem; }
+    .footer-brand span { color: var(--accent); }
+    .footer-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.7; max-width: 300px; }
+    .footer-col-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text); margin-bottom: 1rem; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer-links a { font-size: 0.85rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-contact-item { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.5rem; }
+    .footer-contact-item strong { color: var(--text); }
+    .footer-bottom { max-width: 1180px; margin: 0 auto; border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.78rem; color: var(--muted2); }
+
+    @media (max-width: 900px) { .contact-layout { grid-template-columns: 1fr; } .footer-inner { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { nav { padding: 0 1.25rem; } .nav-links { gap: 1.25rem; } .page-hero { padding: 4rem 1.25rem 3rem; } .contact-section { padding: 3rem 1.25rem; } .form-row { grid-template-columns: 1fr; } .tipo-row { grid-template-columns: 1fr 1fr; } .footer-inner { grid-template-columns: 1fr; gap: 2rem; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">Auto<span>Elite</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#inventario">Inventario</a></li>
+      <li><a href="azienda.html">Chi Siamo</a></li>
+      <li><a href="contatti.html" class="active">Contattaci</a></li>
+    </ul>
+    <a class="nav-cta" href="contatti.html">Prenota</a>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-content">
+      <p class="page-eyebrow">Contatti</p>
+      <h1 class="page-title">Siamo qui<br>per te</h1>
+      <p class="page-sub">Prenota un test drive, richiedi informazioni su un veicolo o vieni a trovarci direttamente in salone. Rispondiamo entro un'ora.</p>
+    </div>
+  </div>
+
+  <div class="contact-section">
+    <div class="contact-layout">
+
+      <!-- FORM -->
+      <div class="form-card">
+        <h2 class="form-title">Invia un messaggio</h2>
+        <p class="form-sub">Compila il modulo e ti ricontattiamo entro 60 minuti durante gli orari di apertura.</p>
+
+        <p class="tipo-label">Tipo di richiesta</p>
+        <div class="tipo-row" id="tipoRow">
+          <button class="tipo-btn sel" onclick="selTipo(this)">🔑 Test Drive</button>
+          <button class="tipo-btn" onclick="selTipo(this)">ℹ️ Info Veicolo</button>
+          <button class="tipo-btn" onclick="selTipo(this)">💳 Finanziamento</button>
+          <button class="tipo-btn" onclick="selTipo(this)">🔁 Permuta</button>
+          <button class="tipo-btn" onclick="selTipo(this)">🔧 Officina</button>
+          <button class="tipo-btn" onclick="selTipo(this)">💬 Altro</button>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label>Nome *</label>
+            <input type="text" placeholder="Mario" />
+          </div>
+          <div class="form-field">
+            <label>Cognome *</label>
+            <input type="text" placeholder="Rossi" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label>Email *</label>
+            <input type="email" placeholder="mario@email.it" />
+          </div>
+          <div class="form-field">
+            <label>Telefono</label>
+            <input type="tel" placeholder="+39 333 1234567" />
+          </div>
+        </div>
+        <div class="form-field">
+          <label>Veicolo di interesse</label>
+          <select>
+            <option value="">Seleziona un veicolo (opzionale)</option>
+            <option>BMW M3 GTS E92 – € 200.000</option>
+            <option>Audi A3 Sportback – € 23.900</option>
+            <option>Mercedes-Benz Classe A – € 30.000</option>
+            <option>Porsche Macan – € 65.000</option>
+            <option>Tesla Model 3 Long Range – € 42.000</option>
+            <option>Alfa Romeo Giulia Veloce – € 48.500</option>
+            <option>Volkswagen Golf 7 – € 25.900</option>
+            <option>Altro / non so ancora</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Messaggio</label>
+          <textarea rows="4" placeholder="Scrivi qui la tua richiesta..."></textarea>
+        </div>
+        <div class="form-field">
+          <label>Come preferisci essere contattato?</label>
+          <select>
+            <option>Email</option>
+            <option>Telefono</option>
+            <option>Indifferente</option>
+          </select>
+        </div>
+
+        <button class="submit-btn" onclick="submitForm()">Invia Richiesta →</button>
+        <p class="form-note">I tuoi dati non verranno condivisi con terze parti.</p>
+        <div class="success-msg" id="successMsg">✓ Messaggio inviato! Ti ricontattiamo al più presto.</div>
+      </div>
+
+      <!-- SIDEBAR INFO -->
+      <div class="info-stack">
+
+        <div class="info-card">
+          <p class="info-card-title">Dove siamo</p>
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <p class="contact-text-label">Indirizzo</p>
+              <p class="contact-text-val">Via delle Automobili 123<br>20100 Milano (MI)</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div>
+              <p class="contact-text-label">Telefono</p>
+              <p class="contact-text-val"><a href="tel:+390212345678">+39 02 1234567</a></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div>
+              <p class="contact-text-label">Email</p>
+              <p class="contact-text-val"><a href="mailto:info@autoelite.it">info@autoelite.it</a></p>
+            </div>
+          </div>
+          <div class="map-embed">
+            <div class="map-placeholder">
+              <p>Via delle Automobili 123, Milano</p>
+              <a href="https://maps.google.com" target="_blank">Apri su Google Maps →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <p class="info-card-title">Orari di apertura</p>
+          <div class="orari-grid">
+            <div class="orario-row"><span class="orario-day">Lunedì – Venerdì</span><span class="orario-time">09:00 – 19:00</span></div>
+            <div class="orario-row"><span class="orario-day">Sabato</span><span class="orario-time">09:00 – 18:00</span></div>
+            <div class="orario-row"><span class="orario-day">Domenica</span><span class="orario-closed">Chiuso</span></div>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <p class="info-card-title">Perché sceglierci</p>
+          <div class="trust-grid">
+            <div class="trust-item-card"><span class="trust-dot"></span><span class="trust-text">Risposta entro 1h</span></div>
+            <div class="trust-item-card"><span class="trust-dot"></span><span class="trust-text">Nessuna pressione</span></div>
+            <div class="trust-item-card"><span class="trust-dot"></span><span class="trust-text">150 controlli</span></div>
+            <div class="trust-item-card"><span class="trust-dot"></span><span class="trust-text">Garanzia estesa</span></div>
+            <div class="trust-item-card"><span class="trust-dot"></span><span class="trust-text">Permuta gratis</span></div>
+            <div class="trust-item-card"><span class="trust-dot"></span><span class="trust-text">Storico verificato</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <p class="footer-brand">Auto<span>Elite</span></p>
+        <p class="footer-desc">La concessionaria di riferimento per veicoli premium a Milano dal 1998.</p>
+      </div>
+      <div>
+        <p class="footer-col-title">Navigazione</p>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#inventario">Inventario</a></li>
+          <li><a href="azienda.html">Chi Siamo</a></li>
+          <li><a href="contatti.html">Contattaci</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">Contatti</p>
+        <p class="footer-contact-item"><strong>Indirizzo</strong><br>Via delle Automobili 123<br>20100 Milano (MI)</p>
+        <p class="footer-contact-item"><strong>Tel</strong><br><a href="tel:+390212345678" style="color:var(--muted);text-decoration:none;">+39 02 1234567</a></p>
+        <p class="footer-contact-item" style="margin-top:0.75rem;font-size:0.78rem;">Lun–Ven: 09:00–19:00<br>Sab: 09:00–18:00</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 AutoElite Milano · Tutti i diritti riservati</span>
+      <span>P.IVA 01234567890</span>
+    </div>
+  </footer>
+
+  <script>
+    function selTipo(btn) {
+      document.querySelectorAll('.tipo-btn').forEach(b => b.classList.remove('sel'));
+      btn.classList.add('sel');
+    }
+    function submitForm() {
+      document.getElementById('successMsg').style.display = 'block';
+      document.querySelector('.submit-btn').textContent = '✓ Inviato';
+      document.querySelector('.submit-btn').style.background = 'var(--green)';
+      document.querySelector('.submit-btn').disabled = true;
+    }
+  </script>
+
+</body>
+</html>

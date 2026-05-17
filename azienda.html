@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chi Siamo & Servizi | AutoElite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0d0d0f; --surface: #141416; --surface2: #1c1c1f; --surface3: #242428;
+      --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.16);
+      --text: #f0efe8; --muted: #8a8a8a; --muted2: #5a5a5a;
+      --accent: #d4a843; --green: #4caf7d;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 15px; line-height: 1.6; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,13,15,0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2.5rem; height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; letter-spacing: 0.04em; color: var(--text); text-decoration: none; }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.875rem; letter-spacing: 0.02em; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-cta { background: var(--accent); color: #1a1000; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.5rem 1.25rem; border-radius: 6px; text-decoration: none; transition: background 0.2s; }
+    .nav-cta:hover { background: #e8b94a; }
+
+    /* PAGE HERO */
+    .page-hero {
+      position: relative; overflow: hidden;
+      padding: 6rem 2.5rem 4.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse 50% 80% at 80% 50%, rgba(212,168,67,0.06) 0%, transparent 70%);
+    }
+    .page-hero-content { position: relative; z-index: 1; max-width: 1180px; margin: 0 auto; }
+    .page-eyebrow { font-family: 'Space Mono', monospace; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+    .page-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--accent); }
+    .page-title { font-family: 'Syne', sans-serif; font-size: clamp(2.5rem, 4vw, 3.8rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 1.25rem; }
+    .page-sub { font-size: 1.05rem; color: var(--muted); max-width: 580px; line-height: 1.75; }
+
+    /* SECTIONS */
+    section { padding: 5rem 2.5rem; }
+    .section-inner { max-width: 1180px; margin: 0 auto; }
+    .section-label { font-family: 'Space Mono', monospace; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+    .section-title { font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; color: var(--text); letter-spacing: -0.01em; margin-bottom: 0.5rem; }
+    .section-sub { color: var(--muted); font-size: 0.95rem; max-width: 520px; margin-bottom: 3rem; }
+
+    /* STORIA */
+    .storia-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .storia-text p { color: var(--muted); line-height: 1.8; margin-bottom: 1.25rem; font-size: 0.95rem; }
+    .storia-text p strong { color: var(--text); }
+    .storia-text p:last-child { margin-bottom: 0; }
+    .storia-visual { position: relative; }
+    .storia-img {
+      width: 100%; height: 420px; object-fit: cover; border-radius: 12px;
+      display: block; background: var(--surface2);
+    }
+    .storia-img-overlay {
+      position: absolute; bottom: 1.5rem; left: 1.5rem;
+      background: rgba(13,13,15,0.88); backdrop-filter: blur(8px);
+      border: 1px solid var(--border); border-radius: 10px;
+      padding: 1rem 1.25rem;
+    }
+    .storia-img-overlay p { font-family: 'Space Mono', monospace; font-size: 1.5rem; font-weight: 700; color: var(--accent); margin-bottom: 0.1rem; }
+    .storia-img-overlay span { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* STATS */
+    #numeri { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .stat-box { background: var(--surface); padding: 2.5rem 2rem; text-align: center; }
+    .stat-box-num { font-family: 'Space Mono', monospace; font-size: 2.5rem; font-weight: 700; color: var(--accent); margin-bottom: 0.35rem; }
+    .stat-box-label { font-size: 0.8rem; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+    .stat-box-desc { font-size: 0.78rem; color: var(--muted2); margin-top: 0.25rem; }
+
+    /* VALORI */
+    .valori-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .valore-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 2rem 1.5rem;
+      transition: border-color 0.25s;
+    }
+    .valore-card:hover { border-color: var(--border-hover); }
+    .valore-num { font-family: 'Space Mono', monospace; font-size: 2.5rem; font-weight: 700; color: rgba(212,168,67,0.2); margin-bottom: 1rem; line-height: 1; }
+    .valore-title { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
+    .valore-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
+
+    /* SERVIZI */
+    #servizi { background: var(--surface); border-top: 1px solid var(--border); }
+    .servizi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+    .servizio-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 12px; padding: 2rem;
+      display: grid; grid-template-columns: auto 1fr; gap: 1.25rem; align-items: start;
+      transition: border-color 0.25s;
+    }
+    .servizio-card:hover { border-color: var(--border-hover); }
+    .servizio-icon { width: 50px; height: 50px; border-radius: 12px; background: rgba(212,168,67,0.1); border: 1px solid rgba(212,168,67,0.2); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+    .servizio-body {}
+    .servizio-title { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 0.4rem; }
+    .servizio-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.7; margin-bottom: 0.75rem; }
+    .servizio-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .servizio-tag { font-size: 0.72rem; color: var(--accent); background: rgba(212,168,67,0.1); border: 1px solid rgba(212,168,67,0.2); padding: 0.2rem 0.6rem; border-radius: 4px; }
+
+    /* TEAM */
+    .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+    .team-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: border-color 0.25s; }
+    .team-card:hover { border-color: var(--border-hover); }
+    .team-avatar { width: 100%; height: 200px; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 2.5rem; font-weight: 800; color: var(--accent); }
+    .team-body { padding: 1rem 1.25rem 1.25rem; }
+    .team-name { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; }
+    .team-role { font-size: 0.78rem; color: var(--accent); margin-bottom: 0.5rem; }
+    .team-bio { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+
+    /* CTA */
+    .cta-banner { padding: 5rem 2.5rem; background: linear-gradient(135deg, rgba(212,168,67,0.08) 0%, transparent 60%); border-top: 1px solid var(--border); text-align: center; }
+    .cta-banner-title { font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; color: var(--text); margin-bottom: 0.75rem; }
+    .cta-banner-sub { font-size: 1rem; color: var(--muted); margin-bottom: 2rem; }
+    .cta-banner-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-gold { background: var(--accent); color: #1a1000; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.04em; text-decoration: none; padding: 0.85rem 2rem; border-radius: 8px; transition: all 0.2s; }
+    .btn-gold:hover { background: #e8b94a; transform: translateY(-2px); }
+    .btn-ghost { background: transparent; color: var(--text); font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.9rem; letter-spacing: 0.04em; text-decoration: none; padding: 0.85rem 2rem; border-radius: 8px; border: 1px solid var(--border-hover); transition: all 0.2s; }
+    .btn-ghost:hover { background: var(--surface); }
+
+    /* FOOTER */
+    footer { background: var(--surface); border-top: 1px solid var(--border); padding: 3rem 2.5rem 2rem; }
+    .footer-inner { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 2.5rem; }
+    .footer-brand { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem; margin-bottom: 0.75rem; }
+    .footer-brand span { color: var(--accent); }
+    .footer-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.7; max-width: 300px; }
+    .footer-col-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text); margin-bottom: 1rem; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer-links a { font-size: 0.85rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-contact-item { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.5rem; }
+    .footer-contact-item strong { color: var(--text); }
+    .footer-bottom { max-width: 1180px; margin: 0 auto; border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.78rem; color: var(--muted2); }
+
+    @media (max-width: 1000px) { .storia-layout { grid-template-columns: 1fr; } .storia-visual { display: none; } .stats-grid { grid-template-columns: repeat(2, 1fr); } .valori-grid { grid-template-columns: repeat(2, 1fr); } .team-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 700px) { .servizi-grid { grid-template-columns: 1fr; } .valori-grid { grid-template-columns: 1fr; } section { padding: 3.5rem 1.25rem; } nav { padding: 0 1.25rem; } .nav-links { gap: 1.25rem; } .page-hero { padding: 4rem 1.25rem 3rem; } .footer-inner { grid-template-columns: 1fr; gap: 2rem; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">Auto<span>Elite</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#inventario">Inventario</a></li>
+      <li><a href="azienda.html" class="active">Chi Siamo</a></li>
+      <li><a href="contatti.html">Contattaci</a></li>
+    </ul>
+    <a class="nav-cta" href="contatti.html">Prenota</a>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-content">
+      <p class="page-eyebrow">Chi siamo</p>
+      <h1 class="page-title">L'Eccellenza<br>nel Settore Automotive</h1>
+      <p class="page-sub">Dal 1998 siamo il punto di riferimento per chi cerca qualità, trasparenza e vera passione per le automobili. Non vendiamo auto — costruiamo fiducia.</p>
+    </div>
+  </div>
+
+  <!-- STORIA -->
+  <section>
+    <div class="section-inner">
+      <div class="storia-layout">
+        <div class="storia-text">
+          <p class="section-label" style="margin-bottom:0.5rem;">La nostra storia</p>
+          <h2 class="section-title" style="margin-bottom:1.5rem;">Da un garage<br>a 500 veicoli in stock</h2>
+          <p>Fondati nel <strong>1998</strong> da un team di appassionati di motori, AutoElite è cresciuta fino a diventare il polo di riferimento per la vendita di veicoli di alta gamma a Milano e in tutta la Lombardia.</p>
+          <p>Non siamo semplici venditori, ma <strong>consulenti della mobilità</strong>. In 25 anni abbiamo rivoluzionato il concetto di concessionaria: un ambiente dove trasparenza, onestà e cura del cliente sono al centro di ogni trattativa.</p>
+          <p>Ogni vettura che entra nel nostro salone supera <strong>150 rigorosi controlli</strong> meccanici e di carrozzeria. Offriamo solo il meglio, garantendo chilometraggi certificati e storici di manutenzione verificati.</p>
+        </div>
+        <div class="storia-visual">
+          <img class="storia-img" src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Il nostro autosalone" />
+          <div class="storia-img-overlay">
+            <p>1998</p>
+            <span>Anno di fondazione</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NUMERI -->
+  <section id="numeri">
+    <div class="section-inner">
+      <p class="section-label">I numeri</p>
+      <h2 class="section-title" style="margin-bottom:2.5rem;">AutoElite in cifre</h2>
+      <div class="stats-grid">
+        <div class="stat-box">
+          <p class="stat-box-num">25+</p>
+          <p class="stat-box-label">Anni di Esperienza</p>
+          <p class="stat-box-desc">Sul mercato dal 1998</p>
+        </div>
+        <div class="stat-box">
+          <p class="stat-box-num">10.000+</p>
+          <p class="stat-box-label">Clienti Soddisfatti</p>
+          <p class="stat-box-desc">In tutta la Lombardia</p>
+        </div>
+        <div class="stat-box">
+          <p class="stat-box-num">500+</p>
+          <p class="stat-box-label">Auto in Stock</p>
+          <p class="stat-box-desc">Pronte alla consegna</p>
+        </div>
+        <div class="stat-box">
+          <p class="stat-box-num">150</p>
+          <p class="stat-box-label">Controlli per Auto</p>
+          <p class="stat-box-desc">Meccanici e di carrozzeria</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALORI -->
+  <section>
+    <div class="section-inner">
+      <p class="section-label">I nostri valori</p>
+      <h2 class="section-title">Cosa ci rende diversi</h2>
+      <p class="section-sub">Tre principi che guidano ogni nostra decisione, da 25 anni.</p>
+      <div class="valori-grid">
+        <div class="valore-card">
+          <p class="valore-num">01</p>
+          <p class="valore-title">Trasparenza totale</p>
+          <p class="valore-desc">Nessun costo nascosto. Il prezzo esposto è il prezzo finale. Storico di manutenzione completo su ogni veicolo, accessibile prima dell'acquisto.</p>
+        </div>
+        <div class="valore-card">
+          <p class="valore-num">02</p>
+          <p class="valore-title">Qualità certificata</p>
+          <p class="valore-desc">150 punti di controllo su ogni auto: motore, carrozzeria, impianto elettrico, interni. Solo i veicoli che superano tutti i test entrano nel nostro stock.</p>
+        </div>
+        <div class="valore-card">
+          <p class="valore-num">03</p>
+          <p class="valore-title">Cliente al centro</p>
+          <p class="valore-desc">Nessuna pressione, nessuna fretta. I nostri consulenti ti supportano con pazienza fino a quando non trovi esattamente l'auto che fa per te.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVIZI -->
+  <section id="servizi">
+    <div class="section-inner">
+      <p class="section-label">Cosa offriamo</p>
+      <h2 class="section-title">I Nostri Servizi</h2>
+      <p class="section-sub">Un ecosistema completo di servizi pensato per accompagnarti prima, durante e dopo l'acquisto.</p>
+      <div class="servizi-grid">
+        <div class="servizio-card">
+          <div class="servizio-icon">💳</div>
+          <div class="servizio-body">
+            <p class="servizio-title">Finanziamenti su Misura</p>
+            <p class="servizio-desc">Collaboriamo con i principali istituti bancari per offrirti le condizioni più competitive. Simulazione gratuita, approvazione in 24 ore.</p>
+            <div class="servizio-tags">
+              <span class="servizio-tag">TAN da 3,9%</span>
+              <span class="servizio-tag">Rate flessibili</span>
+              <span class="servizio-tag">Approvazione rapida</span>
+            </div>
+          </div>
+        </div>
+        <div class="servizio-card">
+          <div class="servizio-icon">🔧</div>
+          <div class="servizio-body">
+            <p class="servizio-title">Officina Ufficiale</p>
+            <p class="servizio-desc">Tagliandi, revisioni e riparazioni eseguite da tecnici certificati con ricambi originali. Prenotazione online disponibile.</p>
+            <div class="servizio-tags">
+              <span class="servizio-tag">Tecnici certificati</span>
+              <span class="servizio-tag">Ricambi originali</span>
+              <span class="servizio-tag">Preventivo gratuito</span>
+            </div>
+          </div>
+        </div>
+        <div class="servizio-card">
+          <div class="servizio-icon">🔁</div>
+          <div class="servizio-body">
+            <p class="servizio-title">Valutazione & Permuta</p>
+            <p class="servizio-desc">Valutiamo la tua auto al miglior prezzo di mercato. Perizia gratuita in sede, risultato in 30 minuti. La permuta si detrarrà direttamente dal prezzo del veicolo scelto.</p>
+            <div class="servizio-tags">
+              <span class="servizio-tag">Perizia gratuita</span>
+              <span class="servizio-tag">30 minuti</span>
+              <span class="servizio-tag">Miglior prezzo</span>
+            </div>
+          </div>
+        </div>
+        <div class="servizio-card">
+          <div class="servizio-icon">🛡️</div>
+          <div class="servizio-body">
+            <p class="servizio-title">Garanzia Estesa</p>
+            <p class="servizio-desc">Fino a 36 mesi di copertura totale su motore, cambio, trasmissione e tutti i principali organi meccanici. Assistenza stradale inclusa.</p>
+            <div class="servizio-tags">
+              <span class="servizio-tag">Fino a 36 mesi</span>
+              <span class="servizio-tag">Copertura totale</span>
+              <span class="servizio-tag">Assistenza H24</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-banner">
+    <h2 class="cta-banner-title">Vieni a trovarci a Milano</h2>
+    <p class="cta-banner-sub">Il nostro team è disponibile dal lunedì al sabato. Prenota un appuntamento o vieni direttamente.</p>
+    <div class="cta-banner-btns">
+      <a href="contatti.html" class="btn-gold">Contattaci</a>
+      <a href="index.html#inventario" class="btn-ghost">Sfoglia l'Inventario</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <p class="footer-brand">Auto<span>Elite</span></p>
+        <p class="footer-desc">La concessionaria di riferimento per veicoli premium a Milano dal 1998.</p>
+      </div>
+      <div>
+        <p class="footer-col-title">Navigazione</p>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#inventario">Inventario</a></li>
+          <li><a href="azienda.html">Chi Siamo</a></li>
+          <li><a href="contatti.html">Contattaci</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">Contatti</p>
+        <p class="footer-contact-item"><strong>Indirizzo</strong><br>Via delle Automobili 123<br>20100 Milano (MI)</p>
+        <p class="footer-contact-item"><strong>Tel</strong><br><a href="tel:+390212345678" style="color:var(--muted);text-decoration:none;">+39 02 1234567</a></p>
+        <p class="footer-contact-item" style="margin-top:0.75rem;font-size:0.78rem;">Lun–Ven: 09:00–19:00<br>Sab: 09:00–18:00</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 AutoElite Milano · Tutti i diritti riservati</span>
+      <span>P.IVA 01234567890</span>
+    </div>
+  </footer>
+
+</body>
+</html>

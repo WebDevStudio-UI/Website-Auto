@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lamborghini Aventador Liberty Walk Widebody | AutoElite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#0d0d0f;--surface:#141416;--surface2:#1c1c1f;--border:rgba(255,255,255,0.08);--border-hover:rgba(255,255,255,0.16);--text:#f0efe8;--muted:#8a8a8a;--muted2:#5a5a5a;--accent:#d4a843;--green:#4caf7d}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:15px;line-height:1.6}
+    nav{position:sticky;top:0;z-index:100;background:rgba(13,13,15,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:.04em;color:var(--text);text-decoration:none}
+    .nav-logo span{color:var(--accent)}
+    .nav-links{display:flex;gap:2.5rem;list-style:none}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:.875rem;letter-spacing:.02em;transition:color .2s}
+    .nav-links a:hover{color:var(--text)}
+    .nav-cta{background:var(--accent);color:#1a1000;font-family:'Syne',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;padding:.5rem 1.25rem;border-radius:6px;text-decoration:none}
+    .bc-wrap{padding:.85rem 2.5rem;border-bottom:1px solid var(--border)}
+    .breadcrumb{display:flex;gap:.5rem;align-items:center;font-size:.8rem;color:var(--muted);max-width:1180px;margin:0 auto}
+    .breadcrumb a{color:var(--muted);text-decoration:none}.breadcrumb a:hover{color:var(--accent)}
+    .sep{color:var(--muted2)}
+    .page{max-width:1180px;margin:0 auto;padding:1.5rem 2.5rem 4rem}
+    .grid-main{display:grid;grid-template-columns:1fr 370px;gap:2rem;align-items:start}
+    .gallery{position:relative}
+    .gallery-main{width:100%;height:360px;object-fit:cover;border-radius:12px;display:block;background:var(--surface2)}
+    .gallery-badge{position:absolute;top:1rem;left:1rem;background:var(--accent);color:#1a1000;font-family:'Space Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:.08em;padding:.25rem .75rem;border-radius:4px;text-transform:uppercase}
+    .gallery-badge-2{position:absolute;top:1rem;left:calc(1rem + 110px);background:rgba(13,13,15,0.85);border:1px solid var(--border-hover);color:var(--text);font-family:'Space Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:.06em;padding:.25rem .75rem;border-radius:4px}
+    .gallery-thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin-top:.5rem}
+    .gallery-thumb{width:100%;height:72px;object-fit:cover;border-radius:6px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,opacity .2s;opacity:.55}
+    .gallery-thumb:hover{opacity:.85}.gallery-thumb.active{border-color:var(--accent);opacity:1}
+    .sidebar-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;position:sticky;top:80px}
+    .car-title-small{font-family:'Syne',sans-serif;font-size:.75rem;font-weight:600;letter-spacing:.12em;color:var(--accent);text-transform:uppercase;margin-bottom:.35rem}
+    .car-title-main{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;line-height:1.15;color:var(--text);margin-bottom:1rem}
+    .price-label{font-size:.75rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.2rem}
+    .price-main{font-family:'Space Mono',monospace;font-size:1.75rem;font-weight:700;color:var(--accent);letter-spacing:-.02em}
+    .price-sub{font-size:.8rem;color:var(--muted);margin-top:.15rem;margin-bottom:1.25rem}
+    .quick-specs{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1.5rem}
+    .spec-pill{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:.5rem .75rem;display:flex;flex-direction:column;gap:.1rem}
+    .spec-pill-label{font-size:.7rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+    .spec-pill-value{font-family:'Space Mono',monospace;font-size:.875rem;color:var(--text);font-weight:700}
+    .divider{height:1px;background:var(--border);margin:1.25rem 0}
+    .cta-stack{display:flex;flex-direction:column;gap:.6rem}
+    .btn{display:block;text-align:center;padding:.75rem 1rem;border-radius:8px;font-size:.875rem;font-weight:500;text-decoration:none;cursor:pointer;transition:all .2s;border:none;font-family:'Inter',sans-serif}
+    .btn-primary{background:var(--accent);color:#1a1000;font-weight:700}
+    .btn-primary:hover{background:#e8b94a;transform:translateY(-1px)}
+    .btn-secondary{background:transparent;color:var(--text);border:1px solid var(--border-hover)}
+    .btn-secondary:hover{background:var(--surface2)}
+    .trust-row{display:flex;gap:1rem;margin-top:1rem;font-size:.75rem;color:var(--muted);flex-wrap:wrap}
+    .trust-item{display:flex;gap:.35rem;align-items:center}
+    .trust-dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0}
+    .tabs-section{margin-top:2rem}
+    .tabs-nav{display:flex;border-bottom:1px solid var(--border);margin-bottom:2rem}
+    .tab-btn{background:none;border:none;border-bottom:2px solid transparent;padding:.75rem 1.5rem;font-family:'Syne',sans-serif;font-size:.875rem;font-weight:600;color:var(--muted);cursor:pointer;transition:all .2s;margin-bottom:-1px;letter-spacing:.04em}
+    .tab-btn:hover{color:var(--text)}.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+    .tab-pane{display:none}.tab-pane.active{display:block}
+    .specs-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+    .specs-group{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.25rem}
+    .specs-group-title{font-family:'Syne',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem}
+    .spec-row{display:flex;justify-content:space-between;align-items:center;padding:.45rem 0;border-bottom:1px solid var(--border);font-size:.875rem;gap:1rem}
+    .spec-row:last-child{border-bottom:none}
+    .spec-name{color:var(--muted);flex-shrink:0}
+    .spec-val{font-weight:500;color:var(--text);text-align:right;font-family:'Space Mono',monospace;font-size:.8rem}
+    .dotazioni-section{margin-bottom:1.5rem}
+    .dotazioni-title{font-family:'Syne',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem}
+    .dotazioni-grid{display:flex;flex-wrap:wrap;gap:.5rem}
+    .dot-chip{display:flex;align-items:center;gap:.4rem;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:.35rem .75rem;font-size:.8rem;color:var(--text)}
+    .dot-chip .check{color:var(--green);font-size:.75rem;flex-shrink:0}
+    .fin-layout{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
+    .fin-form label{display:block;font-size:.75rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.4rem}
+    .fin-field{margin-bottom:1.25rem}
+    .fin-form input[type="range"]{width:100%;accent-color:var(--accent);height:4px;margin-bottom:.3rem}
+    .range-readout{display:flex;justify-content:space-between;font-size:.8rem;color:var(--muted)}
+    .range-val{color:var(--accent);font-family:'Space Mono',monospace;font-weight:700}
+    .fin-result{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.5rem}
+    .fin-result-label{font-size:.75rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem}
+    .fin-result-rate{font-family:'Space Mono',monospace;font-size:2rem;font-weight:700;color:var(--accent);margin-bottom:.25rem}
+    .fin-result-sub{font-size:.8rem;color:var(--muted);margin-bottom:1.5rem}
+    .fin-breakdown{display:flex;flex-direction:column;gap:.5rem}
+    .fin-row{display:flex;justify-content:space-between;font-size:.85rem;padding:.35rem 0;border-bottom:1px solid var(--border)}
+    .fin-row:last-child{border-bottom:none}
+    .fin-row-label{color:var(--muted)}
+    .fin-row-val{font-family:'Space Mono',monospace;font-size:.8rem}
+    .fin-disclaimer{font-size:.7rem;color:var(--muted2);margin-top:1rem;line-height:1.5}
+    footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-size:.8rem;color:var(--muted2)}
+    @media(max-width:900px){.grid-main{grid-template-columns:1fr}.sidebar-card{position:static}.specs-grid{grid-template-columns:1fr}.fin-layout{grid-template-columns:1fr}}
+    @media(max-width:600px){.page{padding:0 1rem 3rem}nav{padding:0 1rem}.nav-links{gap:1rem}.tab-btn{padding:.75rem .9rem;font-size:.8rem}}
+  </style>
+</head>
+<body>
+  <nav>
+    <a class="nav-logo" href="index.html">Auto<span>Elite</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="inventario.html">Inventario</a></li>
+      <li><a href="azienda.html">Chi Siamo</a></li>
+      <li><a href="contatti.html">Contattaci</a></li>
+    </ul>
+    <a class="nav-cta" href="contatti.html">Prenota</a>
+  </nav>
+
+  <div class="bc-wrap">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a><span class="sep">›</span>
+      <a href="inventario.html">Inventario</a><span class="sep">›</span>
+      <span style="color:var(--text)">Lamborghini Aventador LB-Works</span>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="grid-main">
+      <div>
+        <div class="gallery">
+          <img id="mainImg" class="gallery-main" src="https://images.unsplash.com/photo-1591264924302-b090ea3d432a?q=80&w=1200&auto=format&fit=crop" alt="Lamborghini Aventador LB-Works" />
+          <span class="gallery-badge">Certificata</span>
+          <span class="gallery-badge-2">Esemplare Unico</span>
+          <div class="gallery-thumbs">
+            <img class="gallery-thumb active" src="https://images.unsplash.com/photo-1591264924302-b090ea3d432a?q=80&w=1200&auto=format&fit=crop" alt="Vista 1" onclick="switchImg(this,'https://images.unsplash.com/photo-1591264924302-b090ea3d432a?q=80&w=1200&auto=format&fit=crop')" />
+            <img class="gallery-thumb" src="https://images.unsplash.com/photo-1621431057178-e3b61363c068?q=80&w=1200&auto=format&fit=crop" alt="Vista 2" onclick="switchImg(this,'https://images.unsplash.com/photo-1591264924302-b090ea3d432a?q=80&w=1200&auto=format&fit=crop')" />
+            <img class="gallery-thumb" src="https://images.unsplash.com/photo-1591264924302-b090ea3d432a?q=80&w=1200&auto=format&fit=crop" alt="Vista 3" onclick="switchImg(this,'https://images.unsplash.com/photo-1591264924302-b090ea3d432a?q=80&w=1200&auto=format&fit=crop')" />
+            <img class="gallery-thumb" src="https://images.unsplash.com/photo-1621431057178-e3b61363c068?q=80&w=1200&auto=format&fit=crop" alt="Vista 4" onclick="switchImg(this,'https://images.unsplash.com/photo-1591264924302-b090ea3d432a?q=80&w=1200&auto=format&fit=crop')" />
+          </div>
+        </div>
+        <div class="tabs-section">
+          <div class="tabs-nav">
+            <button class="tab-btn active" onclick="switchTab('specifiche',this)">Specifiche Tecniche</button>
+            <button class="tab-btn" onclick="switchTab('dotazioni',this)">Dotazioni & Custom</button>
+            <button class="tab-btn" onclick="switchTab('finanziamento',this)">Rata Mensile</button>
+          </div>
+          <div id="tab-specifiche" class="tab-pane active">
+            <div class="specs-grid">
+              <div class="specs-group"><p class="specs-group-title">Dati Principali</p>
+                <div class="spec-row"><span class="spec-name">Anno di immatricolazione</span><span class="spec-val">2020</span></div>
+                <div class="spec-row"><span class="spec-name">Chilometraggio</span><span class="spec-val">4.800 km</span></div>
+                <div class="spec-row"><span class="spec-name">Carburante</span><span class="spec-val">Benzina Super</span></div>
+                <div class="spec-row"><span class="spec-name">Cambio</span><span class="spec-val">ISR Single-Clutch 7 rapporti</span></div>
+                <div class="spec-row"><span class="spec-name">Trazione</span><span class="spec-val">Integrale AWD</span></div>
+                <div class="spec-row"><span class="spec-name">Colore</span><span class="spec-val">Verde Mantis Matt Widebody Custom</span></div>
+                <div class="spec-row"><span class="spec-name">Carrozzeria</span><span class="spec-val">Coupé 2 porte – Liberty Walk LB-Works</span></div></div>
+              <div class="specs-group"><p class="specs-group-title">Motore &amp; Prestazioni</p>
+                <div class="spec-row"><span class="spec-name">Motore</span><span class="spec-val">V12 6.5L Aspirato</span></div>
+                <div class="spec-row"><span class="spec-name">Potenza</span><span class="spec-val">770 CV / 566 kW</span></div>
+                <div class="spec-row"><span class="spec-name">Coppia</span><span class="spec-val">690 Nm</span></div>
+                <div class="spec-row"><span class="spec-name">0–100 km/h</span><span class="spec-val">2,8 sec</span></div>
+                <div class="spec-row"><span class="spec-name">Velocità max</span><span class="spec-val">350 km/h</span></div>
+                <div class="spec-row"><span class="spec-name">Regime max</span><span class="spec-val">8.500 giri/min</span></div>
+                <div class="spec-row"><span class="spec-name">Cilindrata</span><span class="spec-val">6.498 cc</span></div></div>
+              <div class="specs-group"><p class="specs-group-title">Dimensioni &amp; Peso</p>
+                <div class="spec-row"><span class="spec-name">Lunghezza</span><span class="spec-val">4.797 mm</span></div>
+                <div class="spec-row"><span class="spec-name">Larghezza</span><span class="spec-val">2.265 mm (con kit LB)</span></div>
+                <div class="spec-row"><span class="spec-name">Altezza</span><span class="spec-val">1.136 mm</span></div>
+                <div class="spec-row"><span class="spec-name">Peso a vuoto</span><span class="spec-val">1.575 kg</span></div>
+                <div class="spec-row"><span class="spec-name">Posti</span><span class="spec-val">2</span></div>
+                <div class="spec-row"><span class="spec-name">Carreggiate allargate</span><span class="spec-val">+80 mm anteriore · +100 mm posteriore</span></div></div>
+              <div class="specs-group"><p class="specs-group-title">Consumi &amp; Note Tecniche</p>
+                <div class="spec-row"><span class="spec-name">Consumo misto</span><span class="spec-val">22,7 L/100 km</span></div>
+                <div class="spec-row"><span class="spec-name">CO₂</span><span class="spec-val">398 g/km</span></div>
+                <div class="spec-row"><span class="spec-name">Serbatoio</span><span class="spec-val">90 L</span></div>
+                <div class="spec-row"><span class="spec-name">Classe emissioni</span><span class="spec-val">Euro 6b</span></div></div>
+            </div>
+          </div>
+          <div id="tab-dotazioni" class="tab-pane">
+            <div class="dotazioni-section">
+              <p class="dotazioni-title">Kit Liberty Walk LB-Works</p>
+              <div class="dotazioni-grid"><span class="dot-chip"><span class="check">✓</span> Parafanghi allargati in fibra di carbonio (±80/100 mm)</span><span class="dot-chip"><span class="check">✓</span> Splitter anteriore canard in carbonio</span><span class="dot-chip"><span class="check">✓</span> Side skirt in fibra di carbonio</span><span class="dot-chip"><span class="check">✓</span> Estrattore posteriore racing in carbonio</span><span class="dot-chip"><span class="check">✓</span> Ala posteriore regolabile in 3 posizioni</span><span class="dot-chip"><span class="check">✓</span> Certificazione Liberty Walk Giappone con numero di serie</span></div>
+            </div>
+            <div class="dotazioni-section">
+              <p class="dotazioni-title">Assetto & Tecnica</p>
+              <div class="dotazioni-grid"><span class="dot-chip"><span class="check">✓</span> Assetto ribassato -35mm su sospensioni KW V3</span><span class="dot-chip"><span class="check">✓</span> Cerchi forgiati HRE 21/22" verde lime</span><span class="dot-chip"><span class="check">✓</span> Pneumatici Pirelli P Zero Trofeo R</span><span class="dot-chip"><span class="check">✓</span> Freni Brembo CCM carboceramica 380/356 mm</span><span class="dot-chip"><span class="check">✓</span> Scarico Novitec Titanio con valvole bypassate</span><span class="dot-chip"><span class="check">✓</span> Filtro aria sportivo ad alta portata</span></div>
+            </div>
+            <div class="dotazioni-section">
+              <p class="dotazioni-title">Interni</p>
+              <div class="dotazioni-grid"><span class="dot-chip"><span class="check">✓</span> Sedili Recaro in Alcantara verde/nero</span><span class="dot-chip"><span class="check">✓</span> Rollbar FIA omologato</span><span class="dot-chip"><span class="check">✓</span> Volante Sparco Alcantara con paddle carbo</span><span class="dot-chip"><span class="check">✓</span> Impianto audio Lamborghini HiFi</span><span class="dot-chip"><span class="check">✓</span> Climatizzatore automatico</span><span class="dot-chip"><span class="check">✓</span> Sistema Lamborghini Infotainment con CarPlay</span></div>
+            </div>
+            <div class="dotazioni-section">
+              <p class="dotazioni-title">Sicurezza & Documenti</p>
+              <div class="dotazioni-grid"><span class="dot-chip"><span class="check">✓</span> Airbag frontali e laterali</span><span class="dot-chip"><span class="check">✓</span> ABS Lamborghini con modalità Corsa</span><span class="dot-chip"><span class="check">✓</span> Certificato Liberty Walk originale</span><span class="dot-chip"><span class="check">✓</span> Storico tagliandi Lamborghini Milano</span><span class="dot-chip"><span class="check">✓</span> Ultima revisione 2024</span><span class="dot-chip"><span class="check">✓</span> Libro di marcia originale completo</span></div>
+            </div></div>
+          <div id="tab-finanziamento" class="tab-pane">
+            <div class="fin-layout">
+              <div class="fin-form">
+                <div class="fin-field"><label>Anticipo</label><input type="range" id="acconto" min="0" max="310000" step="50000" value="124000" oninput="calcFin()" /><div class="range-readout"><span>€ 0</span><span class="range-val" id="acconto-out">—</span><span>€ 310.000</span></div></div>
+                <div class="fin-field"><label>Durata</label><input type="range" id="durata" min="12" max="84" step="12" value="60" oninput="calcFin()" /><div class="range-readout"><span>12 mesi</span><span class="range-val" id="durata-out">60 mesi</span><span>84 mesi</span></div></div>
+                <div class="fin-field"><label>Tasso annuo (TAN)</label><input type="range" id="tasso" min="2" max="12" step="0.5" value="5.9" oninput="calcFin()" /><div class="range-readout"><span>2%</span><span class="range-val" id="tasso-out">5,9%</span><span>12%</span></div></div>
+              </div>
+              <div>
+                <div class="fin-result">
+                  <p class="fin-result-label">Rata Mensile Stimata</p>
+                  <p class="fin-result-rate" id="rata">—</p>
+                  <p class="fin-result-sub" id="fin-sub">60 rate · TAN 5,9%</p>
+                  <div class="fin-breakdown">
+                    <div class="fin-row"><span class="fin-row-label">Prezzo veicolo</span><span class="fin-row-val">€ 620.000</span></div>
+                    <div class="fin-row"><span class="fin-row-label">Anticipo</span><span class="fin-row-val" id="fin-anticipo">—</span></div>
+                    <div class="fin-row"><span class="fin-row-label">Importo finanziato</span><span class="fin-row-val" id="fin-importo">—</span></div>
+                    <div class="fin-row"><span class="fin-row-label">Totale interessi</span><span class="fin-row-val" id="fin-interessi">—</span></div>
+                    <div class="fin-row"><span class="fin-row-label">Importo totale</span><span class="fin-row-val" id="fin-totale">—</span></div>
+                  </div>
+                </div>
+                <p class="fin-disclaimer">Simulazione indicativa a scopo informativo. Non costituisce offerta contrattuale. Per veicoli di questo calibro consigliamo una consulenza finanziaria dedicata.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="sidebar-card">
+          <p class="car-title-small">Lamborghini · 2020</p>
+          <h1 class="car-title-main">Aventador LB-Works Widebody</h1>
+          <p class="price-label">Prezzo di vendita</p>
+          <p class="price-main">€ 620.000</p>
+          <p class="price-sub">IVA inclusa · Trattativa riservata</p>
+          <div class="quick-specs">
+            <div class="spec-pill"><span class="spec-pill-label">Anno</span><span class="spec-pill-value">2020</span></div><div class="spec-pill"><span class="spec-pill-label">Chilometri</span><span class="spec-pill-value">4.800 km</span></div><div class="spec-pill"><span class="spec-pill-label">Carburante</span><span class="spec-pill-value">Benzina</span></div><div class="spec-pill"><span class="spec-pill-label">Potenza</span><span class="spec-pill-value">770 CV</span></div><div class="spec-pill"><span class="spec-pill-label">Cambio</span><span class="spec-pill-value">ISR Single-Clutch</span></div><div class="spec-pill"><span class="spec-pill-label">Trazione</span><span class="spec-pill-value">Integrale</span></div>
+          </div>
+          <div class="divider"></div>
+          <div class="cta-stack">
+            <a href="contatti.html" class="btn btn-primary">🔑 Prenota Appuntamento</a>
+            <a href="contatti.html" class="btn btn-secondary">✉ Richiedi Informazioni</a>
+          </div>
+          <div class="trust-row">
+            <span class="trust-item"><span class="trust-dot"></span>Esemplare unico</span>
+            <span class="trust-item"><span class="trust-dot"></span>Storico certificato</span>
+            <span class="trust-item"><span class="trust-dot"></span>Trattativa riservata</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer><p>© 2026 AutoElite Milano · Via delle Automobili 123, 20100 Milano · <a href="tel:+390212345678" style="color:var(--muted)">+39 02 1234567</a></p></footer>
+
+  <script>
+    const PREZZO = 620000;
+    function fmt(n){return '€ '+Math.round(n).toLocaleString('it-IT')}
+    function calcFin(){
+      const acc=parseInt(document.getElementById('acconto').value);
+      const dur=parseInt(document.getElementById('durata').value);
+      const tan=parseFloat(document.getElementById('tasso').value);
+      document.getElementById('acconto-out').textContent=fmt(acc);
+      document.getElementById('durata-out').textContent=dur+' mesi';
+      document.getElementById('tasso-out').textContent=tan.toFixed(1).replace('.',',')+' %';
+      const P=PREZZO-acc, r=(tan/100)/12;
+      const rata=r===0?P/dur:P*(r*Math.pow(1+r,dur))/(Math.pow(1+r,dur)-1);
+      const totale=rata*dur, interessi=totale-P;
+      document.getElementById('rata').textContent=fmt(rata)+'/mese';
+      document.getElementById('fin-sub').textContent=dur+' rate · TAN '+tan.toFixed(1).replace('.',',')+'%';
+      document.getElementById('fin-anticipo').textContent=fmt(acc);
+      document.getElementById('fin-importo').textContent=fmt(P);
+      document.getElementById('fin-interessi').textContent=fmt(interessi);
+      document.getElementById('fin-totale').textContent=fmt(totale+acc);
+    }
+    function switchTab(id,btn){document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+id).classList.add('active');btn.classList.add('active')}
+    function switchImg(el,src){document.getElementById('mainImg').src=src;document.querySelectorAll('.gallery-thumb').forEach(t=>t.classList.remove('active'));el.classList.add('active')}
+    calcFin();
+  </script>
+</body>
+</html>
